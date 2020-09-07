@@ -5,49 +5,21 @@
 
    <h4 style="text-align: center;">{{ search_res | title }}</h4>
   <div class="row">
+    {% for post in final_postings %}
    <div class="col s4">
       <div class="card">
         <div class="card-image">
-          <a href="/" ><img src="https://cdn.mos.cms.futurecdn.net/BwL2586BtvBPywasXXtzwA-320-80.jpeg" alt=""></a>
+          <a href="{{post.1}}" ><img src="https://cdn.mos.cms.futurecdn.net/BwL2586BtvBPywasXXtzwA-320-80.jpeg" alt=""></a>
         </div>
         <div class="card-content">
-          <p>Test</p>
+          <p>{{post.0}}</p>
         </div>
         <div class="card-action">
-          <a href="#">View listing: price TEST PRICE</a>
+          <a href="{{post.1}}">View listing: price ${{post.2}}</a>
         </div>
       </div>
     </div>
-
-    <div class="col s4">
-        <div class="card">
-          <div class="card-image">
-            <a href="/" ><img src="https://cdn.mos.cms.futurecdn.net/BwL2586BtvBPywasXXtzwA-320-80.jpeg" alt=""></a>
-          </div>
-          <div class="card-content">
-            <p>Test</p>
-          </div>
-          <div class="card-action">
-            <a href="/">View listing: price TEST PRICE</a>
-          </div>
-        </div>
-      </div>
-  
-
-      <div class="col s4">
-        <div class="card">
-          <div class="card-image">
-            <a href="/" ><img src="https://cdn.mos.cms.futurecdn.net/BwL2586BtvBPywasXXtzwA-320-80.jpeg" alt=""></a>
-          </div>
-          <div class="card-content">
-            <p>Test</p>
-          </div>
-          <div class="card-action">
-            <a href="#">View listing: price TEST PRICE</a>
-          </div>
-        </div>
-      </div>
-  
+    {% endfor %}
     </div>
 
 {% endblock content %}
