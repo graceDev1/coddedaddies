@@ -32,28 +32,19 @@ def new_search(request):
         post_url = post.find('a').get('href')
         post_price = post.find(class_="result-price").text
         final_postings.append((post_title, post_url, post_price))
-        # if post.find(class_='result-price'):
-        #     post_price = post.find(class_ = 'result-price').text
-    #     else:
-    #         new_response = requests.get(post_url)
-    #         new_data = new_response.text
-    #         new_soup = BeautifulSoup(new_data, features='html.parser')
-    #         post_text = new_soup.find(id='postingbody').text 
-
-    #         r1= re.findall(r'\$\w+', post_text)
-    #         if r1:
-    #             post_price = r1[0]
-    #         else:
-    #             post_price = 'N/A'
-    #     if post.find(class_='result-image').get('data-ids'):
-    #         post_image_id = post.find(class_='result-image').get('data-ids').split(',')
-    #         post_image_url = "https://images.craigslist.org/{}_300x300.jpg".format(post_image_id)
-    #     else:
-    #         post_image_url = 'https://craigslist.org/images/peace.jpg'
+        if post.find(class_='result-price'):
+            post_price = post.find(class_ = 'result-price').text
+        else:
+            post_price = 'N/A'
+        BASE_IMAGE_URL = 'https://images.craigslist.org/{}_300x300.jpg'
+        if post.find(class_='result-image').get('data-ids'):
+            post_image_id = post.find(class_='result-image').get('data-ids').split(',')[0].split(':')[1]
+            post_image_url = "https://images.craigslist.org/{}_300x300.jpg".format(post_image_id)
         
-    #     final_postings.append((post_title, post_url, post_price, post_image_url))
-    # print(data)
-
+        else:
+            post_image_url = 'https://craigslist.org/images/peace.jpg'
+        final_postings.append((post_title, post_url, post_price,post_image_url))
+  
     context = {
         "search_res": search,
         "final_postings":final_postings
